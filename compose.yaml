@@ -1,0 +1,24 @@
+version: '3'
+services: 
+  web:
+      # Give your image a static name
+      image: dorfladen_news
+
+      # Give your container a static name
+      container_name: dorfladen_news
+
+      build: 
+          # Explicitly show docker-cli where your Dockerfile lies
+          context: .
+
+          # Explicitly state the name of your dockerfile
+          dockerfile: Dockerfile
+      command: app.py
+              
+      volumes:
+          - ./app/static/images:/app/static/images
+          - ./app/static/logo:/app/static/logo
+      ports: 
+          - 8000:5000
+      env_file:
+        - .env

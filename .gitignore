@@ -1,0 +1,5 @@
+venv
+*.pyc
+app/static/images/*
+app/static/logo/*
+app/temp
