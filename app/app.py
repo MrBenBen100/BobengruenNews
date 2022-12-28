@@ -69,12 +69,12 @@ def gen():
   
                         yield (b'--frame\r\n'
                             b'Content-Type:'+ mt_bytes +b'\r\n\r\n' + im + b'\r\n')
-                        print('wait')
                         time_next:str =  str(os.getenv('TIME_NEXT','30'))
                         if time_next.isdigit():
                             time_next:int = int(time_next)
                         else:
                             time_next:int = 30
+                        print('Wait', str(time_next))
                         time.sleep(time_next)
         except Exception as e:
             print(e)

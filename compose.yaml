@@ -18,6 +18,7 @@ services:
     volumes:
         - ./app/static/images:/app/static/images
         - ./app/static/logo:/app/static/logo
+        - ./app/templates:/app/templates
     ports: 
         - 8000:5000
     env_file:
