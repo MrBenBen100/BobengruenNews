@@ -32,10 +32,7 @@ def convert_pdf_to_img(file):
     n_pages = len(pdf)
     if n_pages > 0:
         page = pdf[0]
-        pil_image = page.render(
-            pdfium.PdfBitmap.to_pil,
-            optimize_mode="lcd",
-        )
+        pil_image = page.render(optimize_mode="lcd").to_pil()
         pil_image.save(path_png)
         return path_png
 
