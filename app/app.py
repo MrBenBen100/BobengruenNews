@@ -3,7 +3,6 @@ import os
 import time
 from mimetypes import guess_type
 import pypdfium2 as pdfium
-from pypdfium2 import OptimiseMode
 
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 IMAGE_PATH = os.path.join(BASE_PATH,'static','images')
@@ -27,15 +26,13 @@ def is_pdf(file:str)->bool:
 def convert_pdf_to_img(file):
     #file = os.path.join(IMAGE_PATH,file)
     pdf = pdfium.PdfDocument(file)
-    path, filename_ext = os.path.split(file)
+    #path, filename_ext = os.path.split(file)
     path, ext = os.path.splitext(file)
     path_png = path+'.png'
     n_pages = len(pdf)
     if n_pages > 0:
-        page = pdf.get_page(0)
-        pil_image = page.render_to(
-            pdfium.BitmapConv.pil_image,
-            optimise_mode=OptimiseMode.LCD_DISPLAY)
+        page = pdf[0]
+        pil_image = page.render(optimize_mode="lcd").to_pil()
         pil_image.save(path_png)
         return path_png
 
